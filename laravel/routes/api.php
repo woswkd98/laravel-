@@ -23,11 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });*/
 
 
-Route::get('/test1', '\App\Http\Controllers\TestController@test1');
 Route::resources([
     'users' => \App\Http\Controllers\UserController::class
 ]);
 
-
-// 컨트롤러 바인딩
 

@@ -21,21 +21,15 @@ class User extends Authenticatable
     public function store($email, $pwd, $name) : bool {
         return DB::table($this->tableName)->insert([
             'email' =>$email,
-            'pwd' => $pwd,
+            'pwd' => bcrypt($pwd), // 비밀번호 해싱
             'name' => $name,
+            'auth' => 'public'
         ]);
     }
 
-
-
     public function show($id) {
-        return json_encode(DB::table('user')->where(
+        return DB::table('user')->where(
             'id', $id
-        )->first());
+        )->first();
     }
-
-
-
-
-
 }

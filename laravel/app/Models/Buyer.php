@@ -9,8 +9,9 @@ class Buyer extends Model
 {
     use HasFactory;
 
-    public function Sellers() {
-        return $this->belongsToMany('App\Model\Seller');
+
+    public function sellers() {
+        return $this->belongsToMany('App\Models\Seller');
     }
 
 

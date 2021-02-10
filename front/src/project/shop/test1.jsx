@@ -37,19 +37,29 @@ import axios from 'axios'
 
       }
 
-      oauth2() {
-          axios.get('/ouath/clients').then(res => {
+      getClient() {
+          axios.get('/oauth/clients').then(res => {
               console.log(res.data);
           })
       }
 
+      addClient() {
+          axios.post('/oauth/clients', {
+              name : 1,
+              redirect : "http://127.0.0.1:3000/"
+
+          }).then(res => {
+              console.log(res.data);
+          })
+      }
       render() {
           return (
               <div>
                   <button onClick ={this.index}>index</button>
                   <button onClick ={this.insert}>insert</button>
                   <button onClick ={this.show}>show</button>
-                  <button onClick ={this.oauth2}>login</button>
+                  <button onClick ={this.getClient}>getClient</button>
+                  <button onClick ={this.addClient}>addClient</button>
               </div>
           )
       }

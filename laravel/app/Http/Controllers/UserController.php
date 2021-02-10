@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Dotenv\Repository\RepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,8 @@ use App\Services\UserService;
 class UserController extends Controller
 {
     //https://laravel.com/docs/8.x/controllers 표 참고
+    //https://sjwiq200.tistory.com/55 passport
+    //https://laravel.kr/docs/8.x/passport
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +63,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return $this->userService->show($id);
+        return json_encode($this->userService->show($id));
     }
 
     /**
@@ -99,6 +102,8 @@ class UserController extends Controller
     {
         return 'destroy';
     }
+
+
 
 
 }

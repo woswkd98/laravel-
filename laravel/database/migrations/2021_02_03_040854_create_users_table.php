@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
                 $table->string('email')->nullable(false);
                 $table->string('pwd')->nullable(false);
                 $table->string('name')->nullable(false);
-
+                $table->string('auth')->nullable(false);
                 $table->timestamps();
             });
         }

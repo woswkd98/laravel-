@@ -15,6 +15,7 @@ class CreateSellersTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->timestamps();
         });
     }

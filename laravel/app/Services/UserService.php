@@ -3,6 +3,8 @@
 
 namespace App\Services;
 use App\Models\User;
+
+//https://laravel.kr/docs/5.6/eloquent 서
 class UserService
 {
     protected $user;
