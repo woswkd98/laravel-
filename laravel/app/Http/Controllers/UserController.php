@@ -20,7 +20,7 @@ class UserController extends Controller
 
 
     protected  $userService;
-    private $service;
+
 
     public function __construct(UserService $userService)
     {
