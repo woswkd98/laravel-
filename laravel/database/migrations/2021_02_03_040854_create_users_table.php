@@ -17,10 +17,9 @@ class CreateUsersTable extends Migration
             Schema::create('user', function (Blueprint $table) {
 
                 $table->bigIncrements('id'); // mysql의 자동증가
-                $table->string('email')->nullable(false);
-                $table->string('pwd')->nullable(false);
+                $table->string('email')->nullable(false)->unique();
+                $table->string('pwd',255)->nullable(false);
                 $table->string('name')->nullable(false);
-                $table->string('auth')->nullable(false);
                 $table->timestamps();
             });
         }

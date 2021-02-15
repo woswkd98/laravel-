@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use Dotenv\Repository\RepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+
+
 class UserController extends Controller
 {
     //https://laravel.com/docs/8.x/controllers 표 참고
@@ -17,6 +25,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
 
 
     protected  $userService;
@@ -31,7 +41,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return $this->userService->index();
+
+        return '1';
     }
 
     /**
@@ -39,20 +50,50 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
 
-        return 'create';
-    }
+    /*
+    $table->bigIncrements('id'); // mysql의 자동증가
+                $table->string('email')->nullable(false);
+                $table->string('pwd')->nullable(false);
+                $table->string('name')->nullable(false);
+                $table->string('auth')->nullable(false);
+                $table->timestamps();
+    */
 
     /**
      * Store a newly created resource in storage.
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $request->validate([ // 유효성 검사
+            'email' => 'required |email|string|unique',
+            'password'   => 'required | string',
+            'name'  => 'required | string',
+        ]);
+
+        $array =  array(
+            'email'  => $request->input('email'),
+            'password'    =>
+                Hash::make($request->input('password'), [
+                    'round' => $this->PWD_HASH_ROUND
+                ]),
+            'name'   => $request->input('name'),
+        );
+        $isSuccess = $this->userService->create($array);
+        /*
+        if($isSuccess === 1) {
+            $isSuccess = '성공';
+        } else {
+            $isSuccess = '실패';
+        }*/
+
+
+
+        return response($isSuccess,200);
 
     }
 
@@ -63,7 +104,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return json_encode($this->userService->show($id));
+        return '1';
     }
 
     /**
@@ -104,6 +145,32 @@ class UserController extends Controller
     }
 
 
+    public function login(Request $request) {
+
+        $request->validate([
+            'user_id' => 'required|email|string',
+            'password' => 'required|string'
+        ]);
+        $email = $request->input('user_id');
+        $password = $request->input('password');
+
+        $accessToken = $this->userService->login($email,$password);
+
+        //이렇게 넣어주는게 정식이지만 데이터를 주고 리엑트에서 받을때 그냥 body로 준다
+        /*return response('11',200)->withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer '.$accessToken,
+        ]);*/
+
+        return response('Bearer '.$accessToken, 200);
+
+
+    }
+    public function logout(Request $request, $id) {
+        //$this->userService->delete($id);
+       return response('1', 200);
+
+    }
 
 
 }

@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::routes(); // 자동으로 라우트에 등록하지 않아도 라우트 잡아줌
         Passport::tokensExpireIn(now()->addDays(15));// 토큰 등록일부터 15일
         Passport::refreshTokensExpireIn(now()->addDays(30));//재발급 토큰 등록일부터 15일
-        Passport::personalAccessTokensExpireIn(now()->addMonth(6)); //
+        Passport::personalAccessTokensExpireIn(now()->addDays(5)); //개인 엑세스 토큰
 
         // 커스텀 세팅
         //Passport::useTokenModel(Token::class);

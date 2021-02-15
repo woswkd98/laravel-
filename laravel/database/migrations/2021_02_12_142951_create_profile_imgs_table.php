@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuyersTable extends Migration
+class CreateProfileImgsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateBuyersTable extends Migration
      */
     public function up()
     {
-        Schema::create('buyers', function (Blueprint $table) {
-            $table->bigIncrements('id'); // bigint + 자동증가
-            $table->foreignIdFor(\App\Models\User::class, 'user_id');
+        Schema::create('profile_imgs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('imgLink');
+            $table->string('title');
             $table->timestamps();
         });
-
     }
-
-
-
-
 
     /**
      * Reverse the migrations.
@@ -32,6 +28,6 @@ class CreateBuyersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buyers');
+        Schema::dropIfExists('profile_imgs');
     }
 }
