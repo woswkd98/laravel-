@@ -29,3 +29,5 @@ Route::resources([
 Route::post('users/login', '\App\Http\Controllers\UserController@login');
 Route::post('users/register', '\App\Http\Controllers\UserController@store');
 Route::get('users/logout/{id}', '\App\Http\Controllers\UserController@logout');
+Route::post('order', '\App\Http\Controllers\SellerController@order');
+Route::post('test1', '\App\Http\Controllers\SellerController@getOrdersBySeller');

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use App\Models\User;
-use App\Models\Bidding;
+use App\Models\Biddings;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -67,6 +67,9 @@ class UserService implements ServiceBase
         // 새로운 클라이언트를 생성시킨다
 
         return $this->createToken($userInfo->id);
+    }
+    public function logout($id) {
+        DB::table('user')->where('user_id', $id);
     }
 
 }

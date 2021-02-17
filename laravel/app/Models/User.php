@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable; // hashApiTokens가 토큰생성하겠다라는 키워드
-    private $tableName = 'user';
+    private $tableName = 'users';
     public function getAll() {
 
         return DB::table($this->tableName)->get();
@@ -29,7 +30,6 @@ class User extends Authenticatable
         ]);
 
         return $userInfo['password'];
-
     }
 
 
@@ -48,8 +48,11 @@ class User extends Authenticatable
             'email', $email
         )->first();
     }
-    public function delete($id) {
-        return DB::table($this->tableName)->delete('id', $id);
+
+    public function Buyer()
+    {
+        return $this->hasOne('App\Models\Buyer');
     }
+
 
 }

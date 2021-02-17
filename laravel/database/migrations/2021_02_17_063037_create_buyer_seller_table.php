@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-class CreateBidingsTable extends Migration
+class CreateBuyerSellerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,11 @@ class CreateBidingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bidings', function (Blueprint $table) {
-            $table->bigIncrements('id'); // bigint
-            $table->foreignIdFor(App\Models\Buyer::class, 'buyer_id');
-            $table->foreignIdFor(App\Models\Seller::class, 'seller_id');
-            $table->bigInteger('price');
+        Schema::create('buyer_seller', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('buyer_id');
+            $table->foreignId('seller_id');
+            $table->integer('price');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateBidingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bidings');
+        Schema::dropIfExists('buyer_seller');
     }
 }

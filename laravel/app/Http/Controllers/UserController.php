@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\User;
-use Dotenv\Repository\RepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
+
 use App\Services\UserService;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
+
 
 
 class UserController extends Controller
@@ -92,7 +88,6 @@ class UserController extends Controller
         }*/
 
 
-
         return response($isSuccess,200);
 
     }
@@ -167,8 +162,10 @@ class UserController extends Controller
 
     }
     public function logout(Request $request, $id) {
-        //$this->userService->delete($id);
-       return response('1', 200);
+        $this->userService->logout($id);
+
+
+        return response($request->bearerToken(), 200);
 
     }
 

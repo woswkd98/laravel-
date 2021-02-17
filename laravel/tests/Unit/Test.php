@@ -9,7 +9,9 @@ class Test extends TestCase
 
     public function testBasicTest()
     {
-        $response = $this->get('/api/users');
+        $response = $this->get('/api/order');
+
+        $response->assertStatus(200);
     }
 
 }

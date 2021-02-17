@@ -10,43 +10,26 @@ import axios from 'axios'
 export default class test1 extends Component {
 
 
-    register() {
-        axios.post('api/users/register' ,{
-            email : 'ccc@naver.com', //'abcd@naver.com',
-            password : 'aabbbccc1', //'password1',
-            name : '이름'
+
+    order() {
+        axios.post('api/order', {
+            seller_id : 1,
+            buyer_id : 1,
+            price : 2000,
         }).then(res => {
             console.log(res);
         })
     }
-    login() {
 
-        axios.post('api/users/login' ,{
-            user_id : 'ccc@naver.com', //'abcd@naver.com',
-            password : 'aabbbccc1', //'password1',
+    test() {
+        axios.post('api/test1', {
+            seller_id : 5,
+            buyer_id : 3
         }).then(res => {
-            console.log(res.data)
-            axios.defaults.headers.common['Authorization'] = res.data;
-
-
-
-        });
-
-
-
-
-
-    }
-
-    logout() {
-        console.log(axios.defaults.headers.common['Authorization']);
-        axios.get('api/users/logout').then(res => {
             console.log(res);
         })
-
-
-
     }
+
 
     render() {
         return (
@@ -54,6 +37,8 @@ export default class test1 extends Component {
                 <button onClick={this.register}>1111</button>
                 <button onClick={this.login}>2222</button>
                 <button onClick={this.logout}>2222</button>
+                <button onClick={this.order}>3333</button>
+                <button onClick={this.test}>4444</button>
             </div>
         )
     }
