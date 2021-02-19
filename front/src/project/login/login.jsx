@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
-
+import Kakao from 'react-kakao-login';
+import KakaoLogin from "react-kakao-login";
 export default class login extends Component {
     /*
     register() {
@@ -40,7 +41,6 @@ export default class login extends Component {
         })
     }*/
 
-
     constructor(props) {
         super(props);
         this.email = React.createRef();
@@ -61,20 +61,15 @@ export default class login extends Component {
     }
 
     goToKakaoLogin() {
-        axios.post('jinHeung' ,{
-            user_id : 'ccc@naver.com', //'abcd@naver.com',
-            password : 'aabbbccc1', //'password1',
-        }).then(res => {
-            //console.log(res.headers)
-            if(res.data.isOk === true) {
-                return this.props.history.push('/');
-            }
-        });
+        axios.get('api/kakao/login')
     }
+
+
+
     render() {
         return (
             <div>
-                <button onClick={this.goToKakaoLogin}>gotoKakao</button>
+                 <button onClick={this.goToKakaoLogin}>gotoKakao</button>
                 <button onClick={this.login}>login</button>
             </div>
         )

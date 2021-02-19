@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return 'test1';
 });
-
+Route::get('kakao/login', 'App\Http\Controllers\kakaoLogin\LoginController@redirect');
+Route::get('login', 'App\Http\Controllers\kakaoLogin\LoginController@loginView');
+Route::get('kakao/redirection','App\Http\Controllers\kakaoLogin\LoginController@getCode');
 
 

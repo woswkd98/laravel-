@@ -122,6 +122,10 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/facade/ignition" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/facade/ignition-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/laravel/telescope" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/league/oauth1-client" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/laravel/socialite" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/socialiteproviders/manager" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/socialiteproviders/kakao" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

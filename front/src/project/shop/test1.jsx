@@ -22,7 +22,7 @@ export default class test1 extends Component {
     }
 
     test() {
-        axios.post('api/test1', {
+        axios.post('atest1', {
             seller_id : 5,
             buyer_id : 3
         }).then(res => {

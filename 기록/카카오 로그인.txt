@@ -1,0 +1,11 @@
+https://socialiteproviders.com/Kakao/ 여기서 컴포저로 카카오 설치 및 설정 잡는것 까지 다 나와있으니 그대로 따라하면 됨
+
+백엔드에서 리액트로 리다이렉트를 하지는 못해서 따로 web에 view 파서 함 (cors)
+
+실행 순서
+kakao/login -> 동의하고 계속하기 진행 
+-> 우리가 설정해준 리다이렉트 경로로 이동 이 안에는 kakao/redirection로 해놨음
+->받으면서 auth 코드랑 state 받음
+
+엑세스토큰 받는거 남음
+
