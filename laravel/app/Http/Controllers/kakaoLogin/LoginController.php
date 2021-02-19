@@ -38,15 +38,30 @@ class LoginController extends Controller
     }
     public function getCode(Request $request) {
 
-        Http::post('kauth.kakao.com/oauth/token', [
-            'grant_type' =>$request->query('code'),
-            'client'
-        ]);
 
 
-        return view('data', [
-            'test' => $request->query('code')
+        $res = Http::withHeaders([
+            'Content-type'=>'application/x-www-form-urlencoded;charset=utf-8'
+        ])->post('https://kauth.kakao.com/oauth/token', [
+            'grant_type' => 'authorization_code',
+            'client_id' => env('KAKAO_CLIENT_ID'),
+            'client_secret' => env('KAKAO_CLIENT_SECRET'),
+            'redirect_uri' => env('KAKAO_REDIRECT_URI'),
+            'code' => $request->query('code'),
         ]);
+
+        return  array(
+            'res'=>json_decode($res->body()),
+            'code'=>$request->query('code'),
+            'client_id' => env('KAKAO_CLIENT_ID'),
+            'grant_type' => 'authorization_code',
+            'redirect_uri' => env('KAKAO_REDIRECT_URI'));
+
+
+
+
+
+
     }
 
 }
