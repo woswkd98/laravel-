@@ -8,4 +8,10 @@ kakao/login -> 동의하고 계속하기 진행
 ->받으면서 auth 코드랑 state 받음
 
 엑세스토큰 받는거 남음
+/*POST /oauth/token HTTP/1.1
+Host: kauth.kakao.com
+Content-type: application/x-www-form-urlencoded;charset=utf-8*/
+// post지만 겟으로 받아오면 잘받아진다 에러도 그냥 에러가 잡히는게 아니라
+//"error_description":"Bad client credentials","error_code":"KOE010" 요에러잡혀서 시크릿만 확인하다가 포기할뻔
+
 

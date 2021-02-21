@@ -20,6 +20,6 @@ Route::get('/', function () {
 });
 Route::get('kakao/login', 'App\Http\Controllers\kakaoLogin\LoginController@redirect');
 Route::get('login', 'App\Http\Controllers\kakaoLogin\LoginController@loginView');
-Route::get('kakao/redirection','App\Http\Controllers\kakaoLogin\LoginController@getCode');
+Route::get('kakao/redirection','App\Http\Controllers\kakaoLogin\LoginController@getAccessToken');
 
 

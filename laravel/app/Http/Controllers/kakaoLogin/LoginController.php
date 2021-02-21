@@ -21,6 +21,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function redirect() {
         return Socialite::driver('kakao')->redirect();
     }
@@ -36,32 +37,20 @@ class LoginController extends Controller
     public function callBack() {
         return view('data');
     }
-    public function getCode(Request $request) {
+    public function getAccessToken(Request $request) {
 
-
-
-        $res = Http::withHeaders([
-            'Content-type'=>'application/x-www-form-urlencoded;charset=utf-8'
-        ])->post('https://kauth.kakao.com/oauth/token', [
+        $res = Http::get('https://kauth.kakao.com/oauth/token', [
             'grant_type' => 'authorization_code',
             'client_id' => env('KAKAO_CLIENT_ID'),
             'client_secret' => env('KAKAO_CLIENT_SECRET'),
             'redirect_uri' => env('KAKAO_REDIRECT_URI'),
             'code' => $request->query('code'),
         ]);
+        //요청 Authorization헤더에 Bearer 토큰을 빠르게 추가 하려면 다음 withToken메소드를 사용할 수 있습니다 .
 
-        return  array(
-            'res'=>json_decode($res->body()),
-            'code'=>$request->query('code'),
-            'client_id' => env('KAKAO_CLIENT_ID'),
-            'grant_type' => 'authorization_code',
-            'redirect_uri' => env('KAKAO_REDIRECT_URI'));
-
-
-
-
-
-
+        // 정보 뽑아오는 방식
+        return $res = Http::withToken($res['access_token'])
+            ->get('https://kapi.kakao.com/v2/user/me');
     }
 
 }
