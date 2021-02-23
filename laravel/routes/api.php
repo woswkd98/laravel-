@@ -31,4 +31,6 @@ Route::post('users/register', '\App\Http\Controllers\UserController@store');
 Route::get('users/logout/{id}', '\App\Http\Controllers\UserController@logout');
 Route::post('order', '\App\Http\Controllers\SellerController@order');
 Route::post('test1', '\App\Http\Controllers\SellerController@getOrdersBySeller');
-
+Route::get('logout', '\App\Http\Controllers\LoginControllers\SocialLogin\kakaoLogin\LoginController@logout');
+Route::get('getUser','App\Http\Controllers\LoginControllers\SocialLogin\kakaoLogin\LoginController@getUser');
+//Route::get('kakao/redirection','App\Http\Controllers\kakaoLogin\LoginController@getAccessToken');

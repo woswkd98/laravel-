@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\HasApiTokens;
+use PharIo\Manifest\Email;
 
 //https://laravel.kr/docs/5.6/eloquent
 
@@ -20,7 +21,6 @@ class UserService implements ServiceBase
 
     public function __construct(User $user)
     {
-
         $this->user = $user;
     }
 
@@ -43,12 +43,12 @@ class UserService implements ServiceBase
     public function findByEmail($email) {
         return $this->user->findForPassport($email);
     }
-    public function createToken($id) {
 
+    public function createToken($id) {
         $this->user->setAttribute('id', $id);
         return $this->user->createToken('personal',[])->accessToken;
-
     }
+
     public function login($email,$password) {
 
         $userInfo = $this->findByEmail($email);
@@ -57,11 +57,12 @@ class UserService implements ServiceBase
             return $msg = '이메일이 없습니다';
         }
         else {
-        /*
-         *     if(Hash::check($password, $userInfo->pwd , ['round' => 5])) {
+            if(Hash::check($password, $userInfo->pwd , ['round' => 5])) {
                 return $msg = '비밀번호가 틀립니다';
-            }*/
+            }
         }
+
+
 
 
         // 새로운 클라이언트를 생성시킨다
@@ -69,8 +70,12 @@ class UserService implements ServiceBase
         return $this->createToken($userInfo->id);
     }
     public function logout($id) {
-        DB::table('user')->where('user_id', $id);
-    }
 
+    }
+    public function setRefreshToken($email, $refresh_token) {
+        $user = User::where('email', $email)->first();
+        $user->refresh_token = $refresh_token;
+        $user->save();
+    }
 }
 ?>

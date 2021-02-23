@@ -8,9 +8,6 @@ import axios from 'axios'
 
 
 export default class test1 extends Component {
-
-
-
     order() {
         axios.post('api/order', {
             seller_id : 1,
@@ -35,8 +32,7 @@ export default class test1 extends Component {
         return (
             <div>
                 <button onClick={this.register}>1111</button>
-                <button onClick={this.login}>2222</button>
-                <button onClick={this.logout}>2222</button>
+
                 <button onClick={this.order}>3333</button>
                 <button onClick={this.test}>4444</button>
             </div>

@@ -156,17 +156,7 @@ class UserController extends Controller
             'Accept' => 'application/json',
             'Authorization' => 'Bearer '.$accessToken,
         ]);*/
-
         return response('Bearer '.$accessToken, 200);
-
-
-    }
-    public function logout(Request $request, $id) {
-        $this->userService->logout($id);
-
-
-        return response($request->bearerToken(), 200);
-
     }
 
 

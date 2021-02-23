@@ -8,5 +8,5 @@ interface ServiceBase {
     public function update($id);
     public function delete($id);
     public function findByKey($id);
-};
+}
 ?>

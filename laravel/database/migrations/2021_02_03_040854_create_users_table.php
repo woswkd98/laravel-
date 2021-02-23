@@ -15,12 +15,11 @@ class CreateUsersTable extends Migration
     {
         if(!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
-
                 $table->bigIncrements('id'); // mysql의 자동증가
                 $table->string('email')->nullable(false)->unique();
                 $table->string('pwd',255)->nullable(false);
                 $table->string('name')->nullable(false);
-
+                $table->string('refresh_token')->nullable(true);
                 $table->timestamps();
             });
         }

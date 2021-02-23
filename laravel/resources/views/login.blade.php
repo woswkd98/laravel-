@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-
-<button type="button" onclick=" window.location='{{ url("/kakao/login") }}'">Button</button>
+<button type="button" onclick=" window.location='{{ url("/kakao/login") }}'">카카오 로그인 페이지 이동</button>
+<button type="button" onclick=" window.location='{{ url("/getUser") }}'">getUser</button>
 </body>
 </html>

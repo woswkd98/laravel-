@@ -19,11 +19,11 @@
         body {
             font-family: 'Nunito';
         }
-
     </style>
 </head>
 <body>
-{{$test}}
+    {{$res}}
+<button type="button" onclick=" window.location='{{ url("/getUser") }}'">유저 정보 페이지</button>
 </body>
 </html>
 
